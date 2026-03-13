@@ -1,6 +1,6 @@
 // Auth utility functions for token management
 
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 // Store token after login/signup
 export function setToken(token) {
