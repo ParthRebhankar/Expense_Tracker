@@ -99,10 +99,11 @@ const Budgets = () => {
             const res = await authFetch(`/api/budgets/trend?category=${trendCategory}&filter=${trendFilter}`)
             if (res.ok) {
                 const data = await res.json()
-                setTrendData(data)
+                setTrendData(Array.isArray(data) ? data : [])
             }
         } catch (err) {
             console.error('Error fetching trend data:', err)
+            setTrendData([])
         } finally {
             setTrendLoading(false)
         }

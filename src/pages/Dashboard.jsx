@@ -81,8 +81,13 @@ const Dashboard = () => {
                 const summaryData = await summaryRes.json()
                 const recentData = await recentRes.json()
 
-                setSummary(summaryData)
-                setRecentExpenses(recentData.slice(0, 5))
+                if (summaryRes.ok) {
+                    setSummary(summaryData)
+                }
+
+                if (recentRes.ok && Array.isArray(recentData)) {
+                    setRecentExpenses(recentData.slice(0, 5))
+                }
             } catch (err) {
                 console.error('Error fetching dashboard data:', err)
             } finally {
